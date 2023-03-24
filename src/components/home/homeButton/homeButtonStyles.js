@@ -3,18 +3,21 @@ import COLORS from "../../../constants/colors";
 
 export default StyleSheet.create({
     button: {
-        justifyContent: "center",
-        textAlign: "center",
+        justifyContent: 'center',
 
-        width: 200,
-
-        paddingVertical: 10,
+        width: 320,
+        height: 50,
 
         borderRadius: 30,
-        backgroundColor: COLORS.MAIN,
-        color: "#fff",
 
-        fontSize: 20,
-        fontWeight: 600,        
+        backgroundColor: COLORS.HOME_BUTTON_BACKGROUND_COLOR,
     },
+
+    text: {
+        textAlign: 'center',
+
+        color: COLORS.HOME_BUTTON_TEXT_COLOR,   
+        fontSize: 18,
+        fontWeight: 600,
+    }
 })

@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import COLORS from "../../../constants/colors";
 
 export default StyleSheet.create({
     container: {
@@ -7,12 +8,10 @@ export default StyleSheet.create({
 
         width: 320,
 
-        marginTop: 15,
-        marginHorizontal: 15,
+        marginBottom: 10,
         padding: 15,
 
         borderRadius: 20,
-        color: "#fff",
 
         fontSize: 20,
         fontWeight: 600,
@@ -29,15 +28,30 @@ export default StyleSheet.create({
         alignItems: "center",
 
         borderRadius: 15,
-        backgroundColor: "#fff"
+        backgroundColor: COLORS.TASK_BUTTON_BACKGROUND_COLOR,
     },
+    text: {
+        marginLeft: 10,
+        marginTop: 5,
 
-    buttons: {
-        flexDirection: "row",
+        fontSize: 14,
+        fontWeight: 400,
     },
 
     task: {
-        marginBottom: 20,
-        fontSize: 20,
+        flexDirection: "row",
+        width: 200,
+    },
+
+    date: {
+        marginTop: 5,
+
+        fontSize: 12,
+        fontWeight: 400,
+    },
+
+    mark: {
+        fontSize: 18,
+        fontWeight: 400,
     }
 })

@@ -11,14 +11,17 @@ const Task = ({item}) => {
   const styles = taskStyles;
 
   return (
-    <View style={{...styles.container, backgroundColor: COLORS.TASK_PRIORITY[item.priority]}}>
-        <View>
-            <Text style={styles.task}>{item.task}</Text>
-            <Text>{format(item.time, "MM.dd.yyyy")}</Text>
+    <View style={{...styles.container, backgroundColor:(item.isDone?COLORS.TASK_BACKGROUND_COLOR_DONE:COLORS.TASK_BACKGROUND_COLOR)}}>
+        <View style={styles.task}>
+          <Pressable>
+          <View style={styles.button}>
+            <Text style={{...styles.mark, color:(item.isDone?COLORS.TASK_BUTTON_COLOR_DONE:COLORS.TASK_BUTTON_BACKGROUND_COLOR)}}>&#10003;</Text>
+            </View>
+          </Pressable>
+            <Text style={{...styles.text, color:(item.isDone?COLORS.TASK_TEXT_COLOR_DONE:COLORS.TASK_TEXT_COLOR)}}>{item.task}</Text>
         </View>
-        <View style={styles.buttons}>
-            <View style={styles.button}><Text>X</Text></View>
-            <View style={styles.button}><Text>D</Text></View>
+        <View>
+            <Text style={{...styles.date, color:(item.isDone?COLORS.TASK_DATE_COLOR_DONE:COLORS.TASK_TEXT_COLOR)}}>{format(item.time, "MM.dd.yyyy")}</Text>
         </View>
     </View>
   );

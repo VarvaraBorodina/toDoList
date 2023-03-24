@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import homeButtonStyles from './homeButtonStyles';
 
 const HomeButton = () => {
@@ -11,9 +11,11 @@ const HomeButton = () => {
   }
 
   return (
-    <Pressable onPress={onPressMore} title="Add task" styles={styles.button}>
-          <Text style={styles.button}>Add task</Text>
-      </Pressable>
+    <Pressable onPress={onPressMore} title="Add task" >
+      <View style={styles.button}>
+        <Text style={styles.text}>ADD TASK</Text>
+      </View>
+    </Pressable>
   );
 }
 

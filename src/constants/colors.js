@@ -1,9 +1,22 @@
-
 const COLORS = {
-    MAIN: "#ffb8e5",
-    TASK_PRIORITY: [
-        "#d8edfd", "#8fcdff", "#64afe8",
-    ]
+    MAIN_COLOR: '#32315b',
+
+    HOME_BUTTON_BACKGROUND_COLOR: '#292850',
+    HOME_BUTTON_TEXT_COLOR: '#cecef0',
+
+    TASK_SECTION_TEXT_COLOR: '#9392bc',
+
+    TASK_BACKGROUND_COLOR: '#4b4b6c',
+    TASK_BACKGROUND_COLOR_DONE: '#38375f',
+
+    TASK_BUTTON_BACKGROUND_COLOR: '#ffffff',
+    TASK_BUTTON_COLOR_DONE: '#438257',
+
+    TASK_TEXT_COLOR: '#f1f2ff',
+    TASK_TEXT_COLOR_DONE: '#a3a3c7',
+
+    TASK_DATE_COLOR: '#9392bc',
+    TASK_DATE_COLOR_DONE: '#62668c',
 }
 
 export default COLORS;

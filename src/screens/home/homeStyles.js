@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import COLORS from "../../constants/colors";
 
 export default StyleSheet.create({
     container: {
@@ -7,5 +8,11 @@ export default StyleSheet.create({
       height: "100%",
 
       paddingTop: 60,
+
+      backgroundColor: COLORS.MAIN_COLOR,
     },
+
+    header: {
+      flexDirection: 'row'
+    }
 })
