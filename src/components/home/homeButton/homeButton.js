@@ -11,7 +11,7 @@ const HomeButton = () => {
   }
 
   return (
-    <Pressable onPress={onPressMore} title="Add task" >
+    <Pressable onPress={onPressMore}>
       <View style={styles.button}>
         <Text style={styles.text}>ADD TASK</Text>
       </View>

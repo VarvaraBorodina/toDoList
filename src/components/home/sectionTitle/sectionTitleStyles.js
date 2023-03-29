@@ -2,12 +2,9 @@ import {StyleSheet} from "react-native";
 import COLORS from "../../../constants/colors";
 
 export default StyleSheet.create({
-    section: {
-        justifyContent: 'center',
-
-        width: 320,
-    },
     title: {
+        marginHorizontal: 10,
+        
         paddingVertical: 20,
         paddingHorizontal: 10,
 

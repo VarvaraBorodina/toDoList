@@ -9,6 +9,7 @@ export default StyleSheet.create({
         width: 320,
 
         marginBottom: 10,
+        marginHorizontal: 10,
         padding: 15,
 
         borderRadius: 20,

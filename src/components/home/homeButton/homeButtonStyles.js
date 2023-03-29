@@ -8,6 +8,8 @@ export default StyleSheet.create({
         width: 320,
         height: 50,
 
+        marginHorizontal: 10,
+
         borderRadius: 30,
 
         backgroundColor: COLORS.HOME_BUTTON_BACKGROUND_COLOR,
