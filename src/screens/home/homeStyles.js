@@ -5,7 +5,7 @@ export default StyleSheet.create({
     container: {
       alignItems: 'center',
 
-   //   height: "100%",
+      height: "100%",
 
       paddingTop: 60,
 
