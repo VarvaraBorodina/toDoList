@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View, SectionList } from 'react-native';
+import { View } from 'react-native';
 
 import homeStyles from './homeStyles';
 
-import HomeButton from '../../components/home/homeButton/homeButton';
-import Task from '../../components/home/task/task';
-import SectionTitle from '../../components/home/sectionTitle/sectionTitle';
 import PopUp from '../../components/popUp/PopUp';
+import TaskContainer from '../../components/home/taskContainer/taskContainer';
+import AddTaskPopUp from '../../components/home/addTaskPopUp/AddTaskPopUp';
 
 
 const Home = () => {
@@ -40,6 +39,8 @@ const Home = () => {
       return newTodos;
     })
 
+    
+
     setIsVisible((isVisible) => false);
   }
 
@@ -58,14 +59,10 @@ const Home = () => {
 
   return (  
     <View style={styles.container}>
-      <PopUp isVisible={isVisible} handleCancel={handleCancel} handleAdd={handleAdd}/>      
-      <SectionList
-      ListHeaderComponent={<HomeButton onPress={handlePressAddTaskButton} />}
-      renderSectionHeader={({section: {title}}) => <SectionTitle title={title}/>}
-      sections={[{title:'TO DO', data: todos.filter(item => !item.isDone)},{title:'COMPLETED', data: todos.filter(item => item.isDone)}]}
-      keyExtractor={(item) => item.id}
-      renderItem={({item}) => <Task handleDone={handleDone} item={item}/>}
-      />            
+      <PopUp isVisible={isVisible} handleCancel={handleCancel} handleAdd={handleAdd}>
+        <AddTaskPopUp  handleCancel={handleCancel} handleAdd={handleAdd} />
+      </PopUp>
+      <TaskContainer handleDone={handleDone} todos={todos} handlePressAddTaskButton={handlePressAddTaskButton} />             
     </View>
   );
 }
