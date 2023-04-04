@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
+import {clone} from 'lodash';
 
 import homeStyles from './homeStyles';
 
 import PopUp from '../../components/popUp/PopUp';
 import TaskContainer from '../../components/home/taskContainer/taskContainer';
 import AddTaskPopUp from '../../components/home/addTaskPopUp/AddTaskPopUp';
+
+import { getTodos, storeTodos } from '../../store/store';
 
 
 const Home = () => {
@@ -14,6 +17,13 @@ const Home = () => {
 
   const [isVisible, setIsVisible] = useState(false);
   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    storeTodos([]);
+    getTodos('todos').then(data => {
+      setTodos(JSON.parse(data))
+    });
+  }, [])
 
   const handlePressAddTaskButton = () => {
     setIsVisible((isVisible) => true)
@@ -25,21 +35,19 @@ const Home = () => {
 
   const handleAdd = (input) => {
     setTodos((todos) => {
-      const newTodos = JSON.parse(JSON.stringify(todos));
+      const newTodos = clone(todos);
+      const currentDate = new Date();
 
-      const id = newTodos.length?(todos[todos.length - 1].id + 1):0;
       const newTask = {
-        id: id,
+        id: currentDate.getTime(),
         task: input,
-        time: (new Date()).toString(),
+        time: currentDate.toString(),
         isDone: false
       };
-
-      newTodos.push(newTask);
+      newTodos.unshift(newTask);
+      
       return newTodos;
     })
-
-    
 
     setIsVisible((isVisible) => false);
   }
@@ -47,7 +55,7 @@ const Home = () => {
   const handleDone = (id) => {
 
     setTodos((todos) => {
-      const newTodos = JSON.parse(JSON.stringify(todos));
+      const newTodos = clone(todos);
 
       index = newTodos.findIndex(task => task.id === id);
 
@@ -55,6 +63,8 @@ const Home = () => {
 
       return newTodos;
     })
+
+    storeTodos(todos);
   }
 
   return (  
