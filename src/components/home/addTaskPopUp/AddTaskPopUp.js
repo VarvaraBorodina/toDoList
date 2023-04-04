@@ -19,8 +19,8 @@ const AddTaskPopUp = ({handleCancel, handleAdd}) => {
             <Pressable style={styles.button}>
               <Text style={styles.text} onPress={() => handleAdd(input)}>Okay</Text>
             </Pressable>
-            <Pressable style={styles.button} onPress={handleCancel}>
-              <Text style={styles.text}>Cancel</Text>
+            <Pressable style={styles.button}>
+              <Text style={styles.text} onPress={() => handleCancel()}>Cancel</Text>
             </Pressable>
           </View>
     </View>

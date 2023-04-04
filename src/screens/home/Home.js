@@ -19,7 +19,6 @@ const Home = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    storeTodos([]);
     getTodos('todos').then(data => {
       setTodos(JSON.parse(data))
     });
