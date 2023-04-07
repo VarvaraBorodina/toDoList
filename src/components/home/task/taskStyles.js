@@ -3,7 +3,7 @@ import COLORS from "../../../constants/colors";
 
 export default StyleSheet.create({
     container: {
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-between",
 
         width: 320,
@@ -41,11 +41,23 @@ export default StyleSheet.create({
 
     task: {
         flexDirection: "row",
+        justifyContent: "space-between",
+    },
+
+    title: {
+        textAlign: "center",
+
+        flexDirection: "row",
         width: 200,
+    },
+
+    buttons: {
+        flexDirection: "row",
     },
 
     date: {
         marginTop: 5,
+        marginLeft: 7,
 
         fontSize: 12,
         fontWeight: 400,

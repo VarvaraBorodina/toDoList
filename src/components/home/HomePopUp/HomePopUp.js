@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextInput, View, Pressable, Text } from 'react-native';
-import AddTaskPopUpStyles from './AddTaskPopUpStyles';
+import HomePopUpStyles from './HomePopUpStyles';
 
-const AddTaskPopUp = ({handleCancel, handleAdd}) => {
+const HomePopUp = ({handleCancel, handleOkay}) => {
 
-  styles = AddTaskPopUpStyles;
+  styles = HomePopUpStyles;
 
   const [input, setInput] = useState('');
 
@@ -17,7 +17,7 @@ const AddTaskPopUp = ({handleCancel, handleAdd}) => {
        <TextInput style={styles.input} onChangeText={handleInputChange}/>          
           <View style={styles.buttons}>
             <Pressable style={styles.button}>
-              <Text style={styles.text} onPress={() => handleAdd(input)}>Okay</Text>
+              <Text style={styles.text} onPress={() => handleOkay(input)}>Okay</Text>
             </Pressable>
             <Pressable style={styles.button}>
               <Text style={styles.text} onPress={() => handleCancel()}>Cancel</Text>
@@ -27,4 +27,4 @@ const AddTaskPopUp = ({handleCancel, handleAdd}) => {
   );
 }
 
-export default AddTaskPopUp;
+export default HomePopUp;

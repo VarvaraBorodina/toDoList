@@ -6,7 +6,7 @@ import homeStyles from './homeStyles';
 
 import PopUp from '../../components/popUp/PopUp';
 import TaskContainer from '../../components/home/taskContainer/taskContainer';
-import AddTaskPopUp from '../../components/home/addTaskPopUp/AddTaskPopUp';
+import HomePopUp from '../../components/home/HomePopUp/HomePopUp';
 
 import { getTodos, storeTodos } from '../../store/store';
 
@@ -15,7 +15,8 @@ const Home = () => {
 
   const styles = homeStyles;
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleAdd, setIsVisibleAdd] = useState(false);
+  const [isVisibleChange, setIsVisibleChange] = useState(false);
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -25,11 +26,25 @@ const Home = () => {
   }, [])
 
   const handlePressAddTaskButton = () => {
-    setIsVisible((isVisible) => true)
+    setIsVisibleAdd((isVisible) => true)
+  }
+
+  const handlePressChangeTask = () => {
+    setIsVisibleChange((isVisible) => true)
+  }
+
+  const handlePressDeleteTask = (id) => {
+    setTodos((todos) => {
+      const newTodos = clone(todos);
+
+      return newTodos.filter((task) => task.id != id);
+    })
+
+    storeTodos(todos);
   }
 
   const handleCancel = () => {
-    setIsVisible((isVisible) => false);
+    setIsVisibleAdd((isVisible) => false);
   }
 
   const handleAdd = (input) => {
@@ -48,7 +63,7 @@ const Home = () => {
       return newTodos;
     })
 
-    setIsVisible((isVisible) => false);
+    setIsVisibleAdd((isVisible) => false);
   }
 
   const handleDone = (id) => {
@@ -66,12 +81,34 @@ const Home = () => {
     storeTodos(todos);
   }
 
+  const handleChange = (id, value) => {
+    setTodos((todos) => {
+      const newTodos = clone(todos);
+
+      index = newTodos.findIndex(task => task.id === id);
+
+      newTodos[index].task = value;
+
+      return newTodos;
+    })
+
+    storeTodos(todos);
+  }
+
   return (  
     <View style={styles.container}>
-      <PopUp isVisible={isVisible} handleCancel={handleCancel} handleAdd={handleAdd}>
-        <AddTaskPopUp  handleCancel={handleCancel} handleAdd={handleAdd} />
+      <PopUp isVisible={isVisibleAdd}>
+        <HomePopUp  handleCancel={handleCancel} handleOkay={handleAdd} />
       </PopUp>
-      <TaskContainer handleDone={handleDone} todos={todos} handlePressAddTaskButton={handlePressAddTaskButton} />             
+      <PopUp isVisible={isVisibleChange}>
+        <HomePopUp  handleCancel={handleCancel} handleOkay={handleAdd} />
+      </PopUp>
+      <TaskContainer 
+      handleDone={handleDone} 
+      todos={todos} 
+      handlePressAddTaskButton={handlePressAddTaskButton} 
+      handlePressChangeTask={handlePressChangeTask} 
+      handlePressDeleteTask={handlePressDeleteTask}/>             
     </View>
   );
 }
