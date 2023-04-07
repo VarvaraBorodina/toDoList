@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { TextInput, View, Pressable, Text } from 'react-native';
 import HomePopUpStyles from './HomePopUpStyles';
 
-const HomePopUp = ({handleCancel, handleOkay}) => {
+const HomePopUp = ({handleCancel, handleOkay, taskValue}) => {
 
   styles = HomePopUpStyles;
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(taskValue);
 
   const handleInputChange = (input) => {
     setInput(input)
@@ -14,7 +14,7 @@ const HomePopUp = ({handleCancel, handleOkay}) => {
 
   return (  
     <View style={styles.container}>
-       <TextInput style={styles.input} onChangeText={handleInputChange}/>          
+       <TextInput style={styles.input} onChangeText={handleInputChange} value={input}/>          
           <View style={styles.buttons}>
             <Pressable style={styles.button}>
               <Text style={styles.text} onPress={() => handleOkay(input)}>Okay</Text>

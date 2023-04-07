@@ -15,8 +15,9 @@ const Home = () => {
 
   const styles = homeStyles;
 
-  const [isVisibleAdd, setIsVisibleAdd] = useState(false);
-  const [isVisibleChange, setIsVisibleChange] = useState(false);
+  const [isVisibleAdd, setIsVisible] = useState(false);
+  const [changeTaskId, setChangeTaskId] = useState(null);
+
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -26,25 +27,27 @@ const Home = () => {
   }, [])
 
   const handlePressAddTaskButton = () => {
-    setIsVisibleAdd((isVisible) => true)
+    setIsVisible(true);
   }
 
-  const handlePressChangeTask = () => {
-    setIsVisibleChange((isVisible) => true)
+  const handlePressChangeTask = (id) => {
+    setIsVisible(true);
+    setChangeTaskId(id);
   }
 
   const handlePressDeleteTask = (id) => {
     setTodos((todos) => {
       const newTodos = clone(todos);
 
-      return newTodos.filter((task) => task.id != id);
-    })
-
-    storeTodos(todos);
+      const updatedTodos = newTodos.filter((task) => task.id != id);
+      storeTodos(updatedTodos);
+      return updatedTodos;
+    });
   }
 
   const handleCancel = () => {
-    setIsVisibleAdd((isVisible) => false);
+    setIsVisible(false);
+    setChangeTaskId(null);
   }
 
   const handleAdd = (input) => {
@@ -63,7 +66,8 @@ const Home = () => {
       return newTodos;
     })
 
-    setIsVisibleAdd((isVisible) => false);
+    storeTodos(todos);
+    setIsVisible(false);
   }
 
   const handleDone = (id) => {
@@ -81,11 +85,11 @@ const Home = () => {
     storeTodos(todos);
   }
 
-  const handleChange = (id, value) => {
+  const handleChange = (value) => {
     setTodos((todos) => {
       const newTodos = clone(todos);
 
-      index = newTodos.findIndex(task => task.id === id);
+      index = newTodos.findIndex(task => task.id === changeTaskId);
 
       newTodos[index].task = value;
 
@@ -93,15 +97,14 @@ const Home = () => {
     })
 
     storeTodos(todos);
+    setIsVisible(false);
+    setChangeTaskId(null);
   }
 
   return (  
     <View style={styles.container}>
       <PopUp isVisible={isVisibleAdd}>
-        <HomePopUp  handleCancel={handleCancel} handleOkay={handleAdd} />
-      </PopUp>
-      <PopUp isVisible={isVisibleChange}>
-        <HomePopUp  handleCancel={handleCancel} handleOkay={handleAdd} />
+        <HomePopUp  handleCancel={handleCancel} handleOkay={changeTaskId? handleChange : handleAdd} taskValue={changeTaskId?todos.find(task => task.id === changeTaskId).task:""}/>
       </PopUp>
       <TaskContainer 
       handleDone={handleDone} 

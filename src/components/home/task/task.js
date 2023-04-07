@@ -30,7 +30,7 @@ const Task = ({item, handleDone, handlePressChangeTask, handlePressDeleteTask}) 
                 <DeleteTaskSvg/>
               </View>
             </Pressable>
-            <Pressable onPress={() => handleDone(item.id)}>
+            <Pressable onPress={() => handlePressChangeTask(item.id)}>
               <View style={styles.button}>
                 <ChangeTaskSvg/>
               </View>
